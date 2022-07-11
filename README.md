@@ -14,8 +14,8 @@
 月クエの高難度降臨ダンジョンに挑むときや、テクニカルの高難度ダンジョンに挑むとき。また、攻略情報を共有するとき。
 
 ## 設計書
-ER図 : https://drive.google.com/file/d/1cpP2Hy6JbgNq4UIn94FnEX-fwPr5WD7Y/view?usp=sharing
-テーブル定義書 : https://docs.google.com/spreadsheets/d/1ofagyveitGx-YUAK9Tcw6WbCGHLl8z8OvTLM-8K4bes/edit?usp=sharing
+- ER図 : https://drive.google.com/file/d/1cpP2Hy6JbgNq4UIn94FnEX-fwPr5WD7Y/view?usp=sharing
+- テーブル定義書 : https://docs.google.com/spreadsheets/d/1ofagyveitGx-YUAK9Tcw6WbCGHLl8z8OvTLM-8K4bes/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
