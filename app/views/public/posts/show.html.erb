@@ -1,2 +1,42 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'users/info', user: @user %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2>Book detail</h2>
+  		<table class='table'>
+  		  <tr>
+          <td><%= link_to(@post.user) do %>
+            <%= image_tag @post.user.get_profile_image(50,50) %><br>
+            <%= @post.user.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @post.title, @post %></td>
+          <td><%= @post.content %></td>
+          <td id="favorites_buttons_<%= @post.id %>">
+            <%= render "favorites/favorite", post: @post %>
+          </td>
+          <td>
+            <div id="quantity">
+              <%= render "book_comments/quantity", post: @post %>
+            </div>
+          </td>
+          <% if @post.user == current_user %>
+            <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
+            <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
+          <% end %>
+        </tr>
+      </table>
+
+      <div id="index">
+        <%= render "book_comments/index", post: @post %>
+      </div>
+      <div id="form">
+        <%= render "book_comments/form", post: @post, comment: @comment %>
+      </div>
+
+    </div>
+  </div>
+</div>
