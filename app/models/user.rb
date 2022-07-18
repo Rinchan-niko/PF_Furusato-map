@@ -18,7 +18,26 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :nickname, presence: true
-  validates :introduction, presence: true
   validates :email, presence: true
+
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/default-user-image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-user-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
 
 end
