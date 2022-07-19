@@ -1,0 +1,4 @@
+$("#quantity").html("<%= j(render "comments/quantity", post: @post) %>");
+$("#index").html("<%= j(render "comments/index", post: @post) %>");
+$("#form").html("<%= j(render "comments/form", post: @post, comment: @comment) %>");
+$("textarea").val("");
