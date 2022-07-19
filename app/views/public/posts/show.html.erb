@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info', user: @user %>
+      <%= render 'public/users/info', user: @user %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
@@ -10,17 +10,17 @@
   		  <tr>
           <td><%= link_to(@post.user) do %>
             <%= image_tag @post.user.get_profile_image(50,50) %><br>
-            <%= @post.user.name %>
+            <%= @post.user.nickname %>
             <% end %>
           </td>
           <td><%= link_to @post.title, @post %></td>
           <td><%= @post.content %></td>
           <td id="favorites_buttons_<%= @post.id %>">
-            <%= render "favorites/favorite", post: @post %>
+            <%= render "public/favorites/favorite", post: @post %>
           </td>
           <td>
             <div id="quantity">
-              <%= render "book_comments/quantity", post: @post %>
+              <%= render "public/comments/quantity", post: @post %>
             </div>
           </td>
           <% if @post.user == current_user %>
@@ -31,10 +31,10 @@
       </table>
 
       <div id="index">
-        <%= render "book_comments/index", post: @post %>
+        <%= render "public/comments/index", post: @post %>
       </div>
       <div id="form">
-        <%= render "book_comments/form", post: @post, comment: @comment %>
+        <%= render "public/comments/form", post: @post, comment: @comment %>
       </div>
 
     </div>

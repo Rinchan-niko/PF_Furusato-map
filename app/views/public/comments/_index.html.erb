@@ -1,0 +1,20 @@
+<table>
+  <tbody>
+      <% post.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(comment.user) do %>
+            <%= image_tag comment.user.get_profile_image(50,50) %><br>
+            <%= comment.user.nickname %>
+          <% end %>
+        </td>
+        <td><%= comment.comment %></td>
+        <td>
+          <% if comment.user == current_user %>
+            <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

@@ -17,7 +17,7 @@
         <td><%= link_to post.title, post, class: "post_#{post.id}" %></td>
         <td><%= post.content %></td>
         <td id="favorites_buttons_<%= post.id %>">
-          <%= render "favorites/favorite", post: post %>
+          <%= render "public/favorites/favorite", post: post %>
         </td>
         <td>
           <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>

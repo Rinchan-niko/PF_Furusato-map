@@ -15,4 +15,8 @@ class Post < ApplicationRecord
   validates :tag_id, presence: true
   validates :prefecture_id, presence: true
 
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 end
