@@ -1,15 +1,15 @@
 <table class='table'>
   <tr><%= image_tag user.get_profile_image(75,75) %></tr>
   <tr>
-	  <th>nickname</th>
+	  <th>Nickname</th>
 	  <th><%= user.nickname %></th>
   </tr>
   <tr>
-	  <th>introduction</th>
+	  <th>Introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
-    <th>follows</th>
+    <th>Follows</th>
     <th>
       <%= link_to user_followings_path(user) do %>
         <%= user.followings.count %>
@@ -17,7 +17,7 @@
     </th>
   </tr>
   <tr>
-    <th>followers</th>
+    <th>Followers</th>
     <th>
       <%= link_to user_followers_path(user) do %>
         <%= user.followers.count %>
@@ -40,7 +40,7 @@
   <% end %>
 </div>
 <h2>New Post</h2>
-<div>
+<div class='row'>
   <%= link_to new_post_path, class: "btn btn-outline-secondary btn-block" do %>
     <i class="fas fa-plus-circle"></i>
   <% end %>

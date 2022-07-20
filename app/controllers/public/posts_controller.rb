@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @posts = Post.page(params[:page]).per(10)
   end
 
   def show

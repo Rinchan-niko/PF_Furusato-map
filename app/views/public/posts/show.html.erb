@@ -5,30 +5,40 @@
       <%= render 'public/users/info', user: @user %>
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<h2>Book detail</h2>
+  		<h2>Post detail</h2>
+  		<%= image_tag @post.get_image(500,500) %>
   		<table class='table'>
-  		  <tr>
-          <td><%= link_to(@post.user) do %>
-            <%= image_tag @post.user.get_profile_image(50,50) %><br>
-            <%= @post.user.nickname %>
+  		  <thead>
+  		    <tr>
+  		      <th>Title</th>
+  		      <th>Tag</th>
+  		      <th>Prefecture</th>
+  		      <th>Favorite</th>
+  		      <th>User</th>
+  		      <th colspan="3"></th>
+  		    </tr>
+  		  </thead>
+  		  <tbody>
+  		    <tr>
+            <td><%= @post.title %></td>
+            <td><%= link_to @post.tag.name, (@post.tag) %></td>
+            <td><%= link_to @post.prefecture.name, (@post.prefecture) %></td>
+            <td id="favorites_buttons_<%= @post.id %>">
+              <%= render "public/favorites/favorite", post: @post %>
+            </td>
+            <td><%= link_to(@post.user) do %>
+              <%= image_tag @post.user.get_profile_image(50,50) %><br>
+              <%= @post.user.nickname %>
+              <% end %>
+            </td>
+            <% if @post.user == current_user %>
+              <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
+              <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
             <% end %>
-          </td>
-          <td><%= link_to @post.title, @post %></td>
-          <td><%= @post.content %></td>
-          <td id="favorites_buttons_<%= @post.id %>">
-            <%= render "public/favorites/favorite", post: @post %>
-          </td>
-          <td>
-            <div id="quantity">
-              <%= render "public/comments/quantity", post: @post %>
-            </div>
-          </td>
-          <% if @post.user == current_user %>
-            <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
-            <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
-          <% end %>
-        </tr>
+          </tr>
+        </tbody>
       </table>
+      <h4><%= @post.content %></h4>
 
       <div id="index">
         <%= render "public/comments/index", post: @post %>
