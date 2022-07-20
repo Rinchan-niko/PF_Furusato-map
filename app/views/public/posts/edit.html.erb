@@ -1,30 +1,30 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-  		<h1>Editing Book</h1>
-  		<%= form_with model: @post, url: posts_path do |f| %>
+  		<h1>Editing Post</h1>
+  		<%= form_with model: @post, url: post_path(@post.id) do |f| %>
           <div class="field">
-            <%= f.label :image, "商品画像" %>
+            <%= f.label :image, "画像" %>
             <%= f.file_field :image, class: "col pt-2 mb-3" %>
           </div>
           <div class="field">
-            <%= f.label :title, "商品名" %>
-            <%= f.text_field :title, placeholder: "商品名", class: "col login-form-style mb-3" %>
+            <%= f.label :title, "タイトル" %>
+            <%= f.text_field :title, placeholder: "タイトル", class: "col login-form-style mb-3" %>
           </div>
           <div class="field">
-            <%= f.label :content, "商品説明" %>
-            <%= f.text_area :content, placeholder: "ここに説明文を記述します", class: "col login-form-style mb-3" %>
+            <%= f.label :content, "内容" %>
+            <%= f.text_area :content, placeholder: "ここに内容を記述します", class: "col login-form-style mb-3" %>
           </div>
           <div class="field">
-            <%= f.label :tag_id, "ジャンル" %></br>
+            <%= f.label :tag_id, "タグ" %></br>
             <%= f.collection_select :tag_id, @tags, :id, :name, prompt: "選択してください", class: "col login-form-style " %>
           </div>
           <div class="field">
-            <%= f.label :prefecture_id, "ジャンル" %></br>
+            <%= f.label :prefecture_id, "都道府県" %></br>
             <%= f.collection_select :prefecture_id, @prefectures, :id, :name, prompt: "選択してください", class: "col login-form-style " %>
           </div>
           <div class="actions">
-            <%= f.submit "新規登録", class: "btn btn-success my-3" %>
+            <%= f.submit "更新", class: "btn btn-success my-3" %>
           </div>
         <% end %>
   		<%= link_to 'Show', @post, class: "post_#{@post.id}" %> |
