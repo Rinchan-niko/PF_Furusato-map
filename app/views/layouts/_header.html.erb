@@ -9,18 +9,28 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li>
-            <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
+            <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i> home
             <% end %>
           </li>
           <li>
-            <%=  link_to users_path,class: 'nav-link text-light' do %>
+            <%=  link_to users_path, class: 'nav-link text-light' do %>
               <i class="fas fa-users"></i> users
             <% end %>
           </li>
           <li>
-            <%=  link_to posts_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> books
+            <%=  link_to posts_path, class: 'nav-link text-light' do %>
+              <i class="fas fa-file"></i> posts
+            <% end %>
+          </li>
+          <li>
+            <%= link_to tags_path, class: 'nav-link text-light' do %>
+              <i class="fas fa-tags"></i> tags
+            <% end %>
+          </li>
+          <li>
+            <%= link_to prefectures_path, class: 'nav-link text-light' do %>
+              <i class="fas fa-map-marked-alt"></i> prefectures
             <% end %>
           </li>
           <li>
@@ -28,19 +38,45 @@
               <i class="fas fa-sign-out-alt"></i> logout
             <% end %>
           </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to admin_posts_path, class: 'nav-link text-light' do %>
+              投稿一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_users_path, class: 'nav-link text-light' do %>
+              会員一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_tags_path, class: 'nav-link text-light' do %>
+              タグ一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_prefectures_path, class: 'nav-link text-light' do %>
+              都道府県一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
+              ログアウト
+            <% end %>
+          </li>
         <% else %>
           <li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
+            <%= link_to root_path, class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i> home
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+            <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
               <i class="fas fa-user-plus"></i> sign up
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_session_path,class: 'nav-link text-light' do %>
+            <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
               <i class="fas fa-sign-in-alt"></i> login
             <% end %>
           </li>

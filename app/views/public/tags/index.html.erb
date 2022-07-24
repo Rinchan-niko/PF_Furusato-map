@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9 offset-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>タグ名</th>
+            <th>投稿数</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+            <tr>
+              <td><%= tag.name %></td>
+              <td><%= tag.posts.count %></td>
+              <td>
+                <div class="d-flex flex-row-reverse">
+                  <%= link_to "一覧を見る", tag_path(tag.id), class: "btn btn-success"%>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @tags %>
+    </div>
+  </div>
+</div>

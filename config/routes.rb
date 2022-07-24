@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       resource :favorites, only:[:create, :destroy]
       resources :comments, only:[:create, :destroy]
     end
+    resources :tags, only:[:index, :show]
+    resources :prefectures, only:[:index, :show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
