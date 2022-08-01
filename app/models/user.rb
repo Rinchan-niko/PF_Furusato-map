@@ -20,6 +20,10 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :email, presence: true
 
+  def name
+    last_name + " " + first_name
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/default-user-image.jpg')
