@@ -24,11 +24,15 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     resources :users, only:[:index, :show, :edit, :update] do
+      member do
+        get :favorites
+      end
       resource :relationships, only:[:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
     end
     resources :posts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
+      get :search, on: :collection
       resource :favorites, only:[:create, :destroy]
       resources :comments, only:[:create, :destroy]
     end
