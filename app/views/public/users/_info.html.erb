@@ -24,6 +24,14 @@
       <% end %>
     </th>
   </tr>
+  <tr>
+    <th>Favorites</th>
+    <th>
+      <%= link_to favorites_user_path(user) do %>
+        <%= user.favorites.count %>
+      <% end %>
+    </th>
+  </tr>
 </table>
 
 <div class='row'>
