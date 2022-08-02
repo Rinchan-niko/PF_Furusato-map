@@ -1,2 +1,42 @@
-<h1>Admin::Comments#index</h1>
-<p>Find me in app/views/admin/comments/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-9 offset-2">
+      <div class="customer-login-form">
+        <div class="my-2">
+          <h4>コメント一覧</h4>
+          <table class='table table-inverse'>
+            <thead>
+              <tr>
+                <th>コメント</th>
+                <th>投稿</th>
+                <th>コメントユーザー</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @comments.each do |comment| %>
+              <tr>
+                <td><%= comment.comment %></td>
+                <td>
+                  <%= link_to admin_post_path(comment.post) do %>
+                    <%= image_tag comment.post.get_image(100,100) %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to admin_user_path(comment.user) do %>
+                    <%= image_tag comment.user.get_profile_image(50,50) %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to 'Destroy', admin_comment_path(comment.id), method: :delete, class: "btn btn-sm btn-danger" %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @comments %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

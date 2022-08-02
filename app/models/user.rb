@@ -20,6 +20,10 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :email, presence: true
 
+  def name
+    last_name + " " + first_name
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/default-user-image.jpg')
@@ -38,6 +42,13 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  def self.guest
+    find_or_create_by!(last_name: 'guest', first_name: 'user', nickname: 'guestuser', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.nickname = "guestuser"
+    end
   end
 
 end
